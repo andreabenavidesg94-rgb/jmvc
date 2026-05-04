@@ -1,0 +1,114 @@
+// =====================================================
+// JMVC - Prisma schema
+// Base de datos: PostgreSQL
+// Ejecutar:
+//   npx prisma migrate dev --name init
+//   npx prisma generate
+// =====================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ============== Enums ==============
+
+enum Plan {
+  FREE
+  STARTER
+  GROWTH
+  AGENCY
+}
+
+enum SubscriptionStatus {
+  // Coincide con los estados de Paddle Billing.
+  active
+  trialing
+  past_due
+  paused
+  canceled
+  inactive
+}
+
+enum BillingCycle {
+  monthly
+  yearly
+}
+
+// ============== Modelos ==============
+
+model User {
+  id                  String   @id @default(cuid())
+  email               String   @unique
+  name                String?
+  // Hash de contraseña (cuando conectes auth real). Nullable mientras no haya auth.
+  passwordHash        String?
+
+  // Vinculación con Paddle.
+  paddleCustomerId    String?  @unique
+  paddleSubscriptionId String? @unique
+
+  // Estado actual (denormalizado para lectura rápida en /dashboard).
+  subscriptionStatus  SubscriptionStatus @default(inactive)
+  plan                Plan               @default(FREE)
+  billingCycle        BillingCycle?
+
+  currentPeriodStart  DateTime?
+  currentPeriodEnd    DateTime?
+  cancelAtPeriodEnd   Boolean            @default(false)
+
+  // Relaciones.
+  subscriptions       Subscription[]
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  @@index([paddleCustomerId])
+  @@index([paddleSubscriptionId])
+}
+
+model Subscription {
+  id                   String   @id @default(cuid())
+  userId               String
+  user                 User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  paddleSubscriptionId String   @unique
+  paddleCustomerId     String
+  priceId              String
+  plan                 Plan
+  billingCycle         BillingCycle
+  status               SubscriptionStatus
+
+  currentPeriodStart   DateTime?
+  currentPeriodEnd     DateTime?
+  canceledAt           DateTime?
+  cancelAtPeriodEnd    Boolean  @default(false)
+
+  // Último payload bruto del webhook (auditoría / debugging).
+  rawEvent             Json?
+
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([userId])
+  @@index([paddleCustomerId])
+  @@index([status])
+}
+
+// Tabla de idempotencia para webhooks de Paddle.
+// Antes de procesar un evento se intenta insertar en esta tabla.
+// Si el `eventId` ya existe, ignoramos el evento (es un reintento).
+model PaddleEvent {
+  id          String   @id @default(cuid())
+  eventId     String   @unique // notification_id de Paddle
+  eventType   String
+  processedAt DateTime @default(now())
+  rawEvent    Json
+
+  @@index([eventType])
+  @@index([processedAt])
+}
