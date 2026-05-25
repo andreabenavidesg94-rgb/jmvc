@@ -1,66 +1,108 @@
 import Link from 'next/link';
-import { ArrowRight, PlayCircle, Sparkles } from 'lucide-react';
+import { ArrowRight, PlayCircle, Sparkles, ShieldCheck } from 'lucide-react';
 import { DashboardMockup } from './DashboardMockup';
+import { RevealOnScroll } from './RevealOnScroll';
+import { RobotAssistant } from './RobotAssistant';
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden">
-      {/* Fondo decorativo */}
-      <div aria-hidden className="bg-noise absolute inset-0 -z-10" />
+      {/* Capa de grid sutil sobre el fondo global de partículas */}
       <div
         aria-hidden
-        className="absolute inset-x-0 top-0 -z-10 h-px bg-gradient-to-r from-transparent via-brand-400/40 to-transparent"
+        className="bg-grid-pattern absolute inset-0 -z-10 opacity-25 [background-size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)]"
       />
-      <div
-        aria-hidden
-        className="bg-grid-pattern absolute inset-0 -z-10 opacity-30 [background-size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)]"
-      />
+      {/* Glows extra puntuales */}
+      <div aria-hidden className="glow-orb-brand absolute -left-32 top-32 -z-10 h-80 w-80" />
+      <div aria-hidden className="glow-orb-cyan absolute -right-32 top-10 -z-10 h-80 w-80" />
+      <div aria-hidden className="glow-orb-fuchsia absolute left-1/2 top-2/3 -z-10 h-32 w-2/3 -translate-x-1/2" />
 
       <div className="container pb-20 pt-14 md:pb-28 md:pt-20">
-        <div className="grid items-center gap-14 lg:grid-cols-2">
-          <div className="animate-fade-in">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs text-white/80">
-              <Sparkles size={14} className="text-brand-300" />
-              Campañas con IA listas en minutos
-            </span>
+        <div className="grid items-center gap-12 lg:grid-cols-[1.05fr,1fr] lg:gap-16">
+          <div>
+            <RevealOnScroll variant="fade-up">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="inline-flex items-center gap-2 rounded-full border border-brand-400/40 bg-brand-500/[0.10] px-3 py-1 text-xs text-brand-100">
+                  <Sparkles size={14} className="text-brand-300" aria-hidden />
+                  Copiloto de IA para campañas
+                </span>
+                <span className="chip">
+                  <span className="live-dot" /> Disponible
+                </span>
+              </div>
+            </RevealOnScroll>
 
-            <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-white md:text-6xl">
-              Crea campañas de{' '}
-              <span className="gradient-text">Meta, Google y TikTok Ads</span>{' '}
-              con inteligencia artificial.
-            </h1>
+            <RevealOnScroll variant="blur-up" delay={120}>
+              <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.04] tracking-tight text-white md:text-6xl lg:text-[64px]">
+                Convierte una idea en una{' '}
+                <span className="gradient-text">campaña lista para probar</span>{' '}
+                <span className="text-white/85">en minutos.</span>
+              </h1>
+            </RevealOnScroll>
 
-            <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-white/70 md:text-lg">
-              JMVC analiza tu negocio y genera estrategia, copies, creatividades
-              y audiencias listas para lanzar. Sin perder horas configurando
-              campañas, sin depender de una agencia y sin necesidad de saber de
-              marketing técnico.
-            </p>
+            <RevealOnScroll variant="fade-up" delay={220}>
+              <p className="mt-6 max-w-xl text-pretty text-base leading-relaxed text-white/75 md:text-lg">
+                JMVC prepara estrategia, copies, audiencias e ideas creativas
+                para campañas en Meta Ads, Google Ads y TikTok Ads, desde un
+                solo flujo de trabajo.
+              </p>
+            </RevealOnScroll>
 
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link
-                href="/signup"
-                className="btn-primary"
-                aria-label="Crear mi primera campaña con JMVC"
-              >
-                Crear mi primera campaña
-                <ArrowRight size={18} />
-              </Link>
-              <Link href="/#como-funciona" className="btn-ghost">
-                <PlayCircle size={18} />
-                Ver cómo funciona
-              </Link>
-            </div>
+            <RevealOnScroll variant="fade-up" delay={320}>
+              <ul className="mt-6 flex flex-wrap gap-2 text-xs text-white/70">
+                {[
+                  'Brief inteligente',
+                  'Motor creativo',
+                  'Audiencias sugeridas',
+                  'Export a tu plataforma',
+                ].map((f) => (
+                  <li key={f} className="chip">
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </RevealOnScroll>
 
-            <p className="mt-5 text-xs text-white/45">
-              Sin compromiso · Cancela cuando quieras · Pagos seguros con Paddle
-            </p>
+            <RevealOnScroll variant="fade-up" delay={420}>
+              <div className="mt-8 flex flex-wrap items-center gap-3">
+                <Link
+                  href="/signup"
+                  className="btn-primary"
+                  aria-label="Crear mi primera campaña con JMVC"
+                >
+                  Crear mi primera campaña
+                  <ArrowRight size={18} aria-hidden />
+                </Link>
+                <Link href="/#como-funciona" className="btn-ghost">
+                  <PlayCircle size={18} aria-hidden />
+                  Ver cómo funciona
+                </Link>
+              </div>
+              <p className="mt-5 inline-flex items-center gap-2 text-xs text-white/55">
+                <ShieldCheck size={14} className="text-emerald-300" aria-hidden />
+                Setup rápido · Cancela cuando quieras · Pagos seguros
+              </p>
+            </RevealOnScroll>
           </div>
 
-          <div className="relative">
+          {/* Mockup + robot lateral */}
+          <RevealOnScroll variant="blur-up" delay={200} className="relative">
             <DashboardMockup />
-          </div>
+
+            {/* Robot pegado al mockup, oculto en móvil para no ensuciar */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -right-6 -top-10 hidden lg:block"
+            >
+              <RobotAssistant size="md" />
+            </div>
+          </RevealOnScroll>
         </div>
+      </div>
+
+      {/* Línea luminosa al pie del hero */}
+      <div className="container">
+        <div className="glow-line" />
       </div>
     </section>
   );

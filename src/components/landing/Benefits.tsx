@@ -3,8 +3,8 @@ import {
   PenTool,
   ImagePlus,
   Crosshair,
-  TrendingUp,
-  GaugeCircle,
+  ListChecks,
+  LayoutDashboard,
   Megaphone,
   GraduationCap,
 } from 'lucide-react';
@@ -14,9 +14,9 @@ const BENEFITS = [
   { icon: PenTool, title: 'Copies persuasivos por IA', body: 'Variantes adaptadas a cada plataforma y formato de anuncio.' },
   { icon: ImagePlus, title: 'Ideas de creatividades', body: 'Conceptos visuales y hooks para anuncios estáticos y vídeo.' },
   { icon: Crosshair, title: 'Segmentación inteligente', body: 'Audiencias sugeridas en función de tu producto y objetivo.' },
-  { icon: TrendingUp, title: 'Optimización basada en datos', body: 'Recomendaciones para ajustar lo que está funcionando peor.' },
-  { icon: GaugeCircle, title: 'Panel simple de métricas', body: 'Datos importantes en un solo lugar, sin ruido innecesario.' },
-  { icon: Megaphone, title: 'Meta, Google y TikTok Ads', body: 'Compatibilidad pensada para los tres canales más usados hoy.' },
+  { icon: ListChecks, title: 'Estructura clara de campaña', body: 'Brief listo para llevar al gestor de Meta, Google o TikTok Ads.' },
+  { icon: LayoutDashboard, title: 'Todo en un solo panel', body: 'Briefs, copies, audiencias e ideas creativas centralizados.' },
+  { icon: Megaphone, title: 'Diseñado para Meta, Google y TikTok Ads', body: 'Pensado para los tres canales más usados por la mayoría de negocios.' },
   { icon: GraduationCap, title: 'Sin experiencia técnica', body: 'Pensado para que cualquier persona del negocio pueda usarlo.' },
 ];
 

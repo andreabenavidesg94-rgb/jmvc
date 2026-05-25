@@ -96,57 +96,95 @@ export function Pricing({
             return (
               <li
                 key={plan.id}
-                className={`relative flex flex-col rounded-2xl border p-7 transition ${
+                className={`group relative flex flex-col overflow-hidden rounded-2xl border p-7 transition ${
                   plan.highlight
-                    ? 'border-brand-400/40 bg-gradient-to-b from-brand-500/[0.08] to-transparent shadow-2xl shadow-brand-700/10'
-                    : 'border-white/[0.08] bg-white/[0.02]'
+                    ? 'border-brand-400/40 bg-gradient-to-b from-brand-500/[0.12] via-brand-500/[0.04] to-transparent shadow-2xl shadow-brand-700/20 ring-1 ring-brand-400/20'
+                    : 'surface'
                 }`}
               >
+                {/* Decoración de fondo solo en el plan destacado */}
                 {plan.highlight && (
-                  <span className="absolute -top-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-full border border-brand-400/40 bg-bg px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-brand-200">
-                    <Sparkles size={12} /> Más popular
+                  <>
+                    <div
+                      aria-hidden
+                      className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-brand-500/30 blur-3xl"
+                    />
+                    <div
+                      aria-hidden
+                      className="absolute -bottom-20 -left-12 h-40 w-40 rounded-full bg-accent-500/20 blur-3xl"
+                    />
+                  </>
+                )}
+
+                {plan.highlight && (
+                  <span className="absolute -top-3 left-1/2 inline-flex -translate-x-1/2 items-center gap-1 rounded-full border border-brand-400/50 bg-gradient-to-r from-brand-500 to-accent-500 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-white shadow-lg shadow-brand-700/30">
+                    <Sparkles size={12} aria-hidden /> Más popular
                   </span>
                 )}
 
-                <h3 className="text-lg font-semibold text-white">{plan.name}</h3>
-                <p className="mt-1 text-sm text-white/55">{plan.tagline}</p>
+                <div className="relative">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold text-white">{plan.name}</h3>
+                    {plan.highlight && (
+                      <span className="chip border-brand-400/30 text-brand-100">
+                        Recomendado
+                      </span>
+                    )}
+                  </div>
+                  <p className="mt-1 text-sm text-white/55">{plan.tagline}</p>
 
-                <div className="mt-6 flex items-baseline gap-1.5">
-                  <span className="text-4xl font-semibold tracking-tight text-white">
-                    {price}€
-                  </span>
-                  <span className="text-sm text-white/55">{perLabel}</span>
+                  <div className="mt-6 flex items-baseline gap-1.5">
+                    <span
+                      className={`text-5xl font-semibold tracking-tight ${
+                        plan.highlight ? 'gradient-text' : 'text-white'
+                      }`}
+                    >
+                      {price}€
+                    </span>
+                    <span className="text-sm text-white/55">{perLabel}</span>
+                  </div>
+                  {cycle === 'yearly' && (
+                    <p className="mt-1 text-xs text-white/45">
+                      Equivale a {(price / 12).toFixed(0)}€/mes facturado anualmente
+                    </p>
+                  )}
+
+                  {/* Línea separadora con luz */}
+                  <div className="mt-6 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+
+                  <ul className="mt-6 space-y-2.5 text-sm text-white/80">
+                    {plan.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2">
+                        <span
+                          className={`mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full ${
+                            plan.highlight
+                              ? 'bg-brand-500/20 text-brand-200'
+                              : 'bg-white/[0.06] text-white/70'
+                          }`}
+                        >
+                          <Check size={11} aria-hidden />
+                        </span>
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    type="button"
+                    onClick={() => onSelect(plan.id)}
+                    disabled={loadingPlan === plan.id || isCurrent}
+                    className={`mt-7 ${
+                      plan.highlight ? 'btn-primary' : 'btn-ghost'
+                    } w-full disabled:cursor-not-allowed disabled:opacity-60`}
+                    aria-label={`Seleccionar plan ${plan.name}`}
+                  >
+                    {isCurrent
+                      ? 'Plan actual'
+                      : loadingPlan === plan.id
+                        ? 'Abriendo checkout…'
+                        : plan.ctaLabel}
+                  </button>
                 </div>
-                {cycle === 'yearly' && (
-                  <p className="mt-1 text-xs text-white/45">
-                    Equivale a {(price / 12).toFixed(0)}€/mes facturado anualmente
-                  </p>
-                )}
-
-                <ul className="mt-6 space-y-2.5 text-sm text-white/80">
-                  {plan.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2">
-                      <Check size={16} className="mt-0.5 shrink-0 text-brand-300" aria-hidden />
-                      <span>{f}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <button
-                  type="button"
-                  onClick={() => onSelect(plan.id)}
-                  disabled={loadingPlan === plan.id || isCurrent}
-                  className={`mt-7 ${
-                    plan.highlight ? 'btn-primary' : 'btn-ghost'
-                  } w-full disabled:cursor-not-allowed disabled:opacity-60`}
-                  aria-label={`Seleccionar plan ${plan.name}`}
-                >
-                  {isCurrent
-                    ? 'Plan actual'
-                    : loadingPlan === plan.id
-                      ? 'Abriendo checkout…'
-                      : plan.ctaLabel}
-                </button>
               </li>
             );
           })}

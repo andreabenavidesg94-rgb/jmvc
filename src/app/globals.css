@@ -100,3 +100,205 @@ body {
 .section {
   @apply py-20 md:py-28;
 }
+
+/* =========================================================
+   Utilidades premium adicionales
+   ========================================================= */
+
+/* Card con highlight cenital — simula luz desde arriba.
+   Crea sensación de profundidad sin necesidad de sombras. */
+.surface {
+  position: relative;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.01) 100%
+  );
+}
+.surface::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.12),
+    rgba(255, 255, 255, 0) 30%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Línea horizontal luminosa para separar bloques. */
+.glow-line {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(99, 102, 241, 0.5),
+    rgba(34, 211, 238, 0.4),
+    transparent
+  );
+}
+
+/* Punto pulsante para indicadores "live" / "active". */
+.live-dot {
+  position: relative;
+  display: inline-block;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: rgb(52, 211, 153);
+}
+.live-dot::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  opacity: 0.6;
+  animation: live-pulse 2s ease-out infinite;
+}
+@keyframes live-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* Chip / pill base premium. */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.85);
+  white-space: nowrap;
+}
+
+/* Línea de conexión vertical entre pasos de un workflow. */
+.connector-v {
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgba(255, 255, 255, 0.18),
+    transparent
+  );
+}
+
+/* =========================================================
+   Robot asistente — animaciones puramente CSS
+   ========================================================= */
+
+/* Flotación vertical sutil */
+.robot-float {
+  animation: robot-float 4s ease-in-out infinite;
+}
+@keyframes robot-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* Halo trasero pulsante */
+.robot-halo {
+  animation: robot-halo 3.2s ease-in-out infinite;
+}
+@keyframes robot-halo {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.06); }
+}
+
+/* Visor con leve cambio de saturación */
+.robot-visor {
+  animation: robot-visor 3.8s ease-in-out infinite;
+}
+@keyframes robot-visor {
+  0%, 100% { opacity: 0.95; }
+  50%      { opacity: 1; }
+}
+
+/* Antena: anillo expansivo */
+.robot-antenna-pulse {
+  transform-origin: 100px 20px;
+  animation: robot-antenna 2s ease-out infinite;
+}
+@keyframes robot-antenna {
+  0%   { transform: scale(0.6); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Ojos: parpadeo cada 5s */
+.robot-eye {
+  transform-origin: center;
+  animation: robot-blink 5s infinite;
+}
+@keyframes robot-blink {
+  0%, 96%, 100% { transform: scaleY(1); }
+  98%           { transform: scaleY(0.1); }
+}
+
+/* =========================================================
+   Globos de luz reutilizables
+   ========================================================= */
+.glow-orb-brand {
+  background: radial-gradient(
+    closest-side,
+    rgba(99, 102, 241, 0.55),
+    rgba(99, 102, 241, 0) 70%
+  );
+  filter: blur(40px);
+  mix-blend-mode: plus-lighter;
+}
+.glow-orb-cyan {
+  background: radial-gradient(
+    closest-side,
+    rgba(34, 211, 238, 0.45),
+    rgba(34, 211, 238, 0) 70%
+  );
+  filter: blur(40px);
+  mix-blend-mode: plus-lighter;
+}
+.glow-orb-fuchsia {
+  background: radial-gradient(
+    closest-side,
+    rgba(217, 70, 239, 0.40),
+    rgba(217, 70, 239, 0) 70%
+  );
+  filter: blur(40px);
+  mix-blend-mode: plus-lighter;
+}
+
+/* =========================================================
+   Respeto de prefers-reduced-motion: anula todas las
+   animaciones decorativas declaradas arriba.
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .robot-float,
+  .robot-halo,
+  .robot-visor,
+  .robot-antenna-pulse,
+  .robot-eye,
+  .live-dot::after {
+    animation: none !important;
+  }
+  .animate-fade-in {
+    animation: none !important;
+  }
+}
