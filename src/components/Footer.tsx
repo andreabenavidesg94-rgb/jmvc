@@ -71,6 +71,11 @@ export function Footer() {
                 </Link>
               </li>
               <li>
+                <Link href="/data-deletion" className="hover:text-white">
+                  Eliminación de datos
+                </Link>
+              </li>
+              <li>
                 <Link href="/contact" className="hover:text-white">
                   Contacto
                 </Link>

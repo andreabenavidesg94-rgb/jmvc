@@ -42,7 +42,7 @@ El proyecto los referencia en `src/app/layout.tsx` y en `src/components/JsonLd.t
 
 Después de subir los archivos, verifica en producción:
 
-- `https://tu-dominio.com/og-image.png` devuelve 200.
-- `https://tu-dominio.com/apple-touch-icon.png` devuelve 200.
+- `https://jmvcapp.com/og-image.png` devuelve 200.
+- `https://jmvcapp.com/apple-touch-icon.png` devuelve 200.
 - Pega el dominio en <https://www.opengraph.xyz/> y comprueba que la preview aparece bien.
 - Pega el dominio en <https://search.google.com/test/rich-results> y comprueba que el campo `logo` no da error.

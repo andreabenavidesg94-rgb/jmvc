@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { NoSubmitForm } from '@/components/NoSubmitForm';
-import { COMPANY, SITE, SUPPORT_EMAIL } from '@/lib/site';
+import { COMPANY, SITE, SUPPORT_EMAIL, hasRealValue } from '@/lib/site';
 import { Mail, MessageCircle, Building2 } from 'lucide-react';
 
 export const metadata: Metadata = {
@@ -69,7 +69,7 @@ export default function ContactPage() {
               <br />
               {COMPANY.address}
               <br />
-              {COMPANY.taxId !== '[Número fiscal si aplica]' && (
+              {hasRealValue(COMPANY.taxId) && (
                 <>
                   {COMPANY.taxId}
                   <br />

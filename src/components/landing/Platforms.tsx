@@ -30,7 +30,7 @@ const PLATFORMS = [
     viaTone: 'via-accent-600/10',
     accentChip: 'border-accent-400/30 bg-accent-500/[0.08] text-accent-100',
     monoBg: 'from-accent-500 to-accent-600',
-    preview: { headline: 'IA para campañas listas', cta: 'jmvc.app', tag: 'Search' },
+    preview: { headline: 'IA para campañas listas', cta: 'jmvcapp.com', tag: 'Search' },
   },
   {
     name: 'TikTok Ads',

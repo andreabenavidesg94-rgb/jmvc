@@ -13,5 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/privacy`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${base}/cookies`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
     { url: `${base}/refunds`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${base}/data-deletion`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
   ];
 }

@@ -12,8 +12,8 @@ const inter = Inter({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
   title: {
-    default: 'JMVC — Crea campañas de Meta, Google y TikTok Ads con IA',
-    template: '%s · JMVC',
+    default: 'JMVC Ads AI — Crea campañas de Meta, Google y TikTok Ads con IA',
+    template: '%s · JMVC Ads AI',
   },
   description: SITE.shortDescription,
   applicationName: SITE.name,
@@ -29,6 +29,8 @@ export const metadata: Metadata = {
     'herramienta de publicidad digital con IA',
     'campañas publicitarias para ecommerce',
     'automatización de marketing digital',
+    'JMVC Ads AI',
+    'jmvcapp.com',
   ],
   alternates: {
     canonical: '/',
@@ -38,21 +40,21 @@ export const metadata: Metadata = {
     locale: SITE.locale,
     url: SITE.url,
     siteName: SITE.name,
-    title: 'JMVC — Crea campañas de Meta, Google y TikTok Ads con IA',
+    title: 'JMVC Ads AI — Crea campañas de Meta, Google y TikTok Ads con IA',
     description: SITE.shortDescription,
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'JMVC — Plataforma de IA para campañas publicitarias',
+        alt: 'JMVC Ads AI — Plataforma de IA para campañas publicitarias',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
     site: SITE.twitter,
-    title: 'JMVC — Crea campañas de Meta, Google y TikTok Ads con IA',
+    title: 'JMVC Ads AI — Crea campañas de Meta, Google y TikTok Ads con IA',
     description: SITE.shortDescription,
     images: ['/og-image.png'],
   },

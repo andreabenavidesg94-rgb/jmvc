@@ -1,7 +1,7 @@
 {
-  "name": "JMVC",
-  "short_name": "JMVC",
-  "description": "Plataforma de IA para crear campañas de Meta, Google y TikTok Ads.",
+  "name": "JMVC Ads AI",
+  "short_name": "JMVC Ads AI",
+  "description": "Plataforma de IA para preparar campañas de Meta, Google y TikTok Ads.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#06070C",

@@ -1,4 +1,4 @@
-import { COMPANY, LAST_UPDATED } from '@/lib/site';
+import { COMPANY, LAST_UPDATED, hasRealValue } from '@/lib/site';
 import { AlertTriangle } from 'lucide-react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
@@ -27,9 +27,10 @@ export function LegalPage({ title, intro, children }: LegalPageProps) {
         >
           <AlertTriangle size={18} className="mt-0.5 shrink-0 text-amber-300" aria-hidden />
           <p>
-            Este texto es una <strong>plantilla base</strong> orientativa para
-            un servicio SaaS. Debe ser revisado y adaptado por un profesional
-            legal en {COMPANY.jurisdiction} antes de su publicación definitiva.
+            Este texto es una <strong>base orientativa</strong> para un
+            servicio SaaS. Recomendamos revisarlo con un profesional legal
+            en {COMPANY.jurisdiction} y actualizarlo cuando cambien los
+            términos del servicio.
           </p>
         </div>
 
@@ -41,7 +42,7 @@ export function LegalPage({ title, intro, children }: LegalPageProps) {
 
         <p className="mt-12 border-t border-white/[0.06] pt-6 text-xs text-white/45">
           {COMPANY.legalName} · {COMPANY.address}
-          {COMPANY.taxId !== '[Número fiscal si aplica]' && ` · ${COMPANY.taxId}`} ·{' '}
+          {hasRealValue(COMPANY.taxId) && ` · ${COMPANY.taxId}`} ·{' '}
           {COMPANY.jurisdiction}
         </p>
       </main>
