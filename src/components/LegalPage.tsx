@@ -21,19 +21,6 @@ export function LegalPage({ title, intro, children }: LegalPageProps) {
           Última actualización: {LAST_UPDATED}
         </p>
 
-        <div
-          role="note"
-          className="mt-6 flex items-start gap-3 rounded-xl border border-amber-400/20 bg-amber-400/[0.05] p-4 text-sm text-amber-100/85"
-        >
-          <AlertTriangle size={18} className="mt-0.5 shrink-0 text-amber-300" aria-hidden />
-          <p>
-            Este texto es una <strong>base orientativa</strong> para un
-            servicio SaaS. Recomendamos revisarlo con un profesional legal
-            en {COMPANY.jurisdiction} y actualizarlo cuando cambien los
-            términos del servicio.
-          </p>
-        </div>
-
         {intro && <p className="mt-6 text-white/80">{intro}</p>}
 
         <div className="legal-content mt-8 space-y-5 text-white/75 [&_h2]:mt-10 [&_h2]:text-xl [&_h2]:font-semibold [&_h2]:text-white [&_h3]:mt-6 [&_h3]:text-base [&_h3]:font-semibold [&_h3]:text-white [&_p]:leading-relaxed [&_ul]:list-disc [&_ul]:space-y-1.5 [&_ul]:pl-6 [&_li]:text-white/75 [&_a]:text-brand-300 [&_a:hover]:text-brand-200 [&_strong]:text-white">
