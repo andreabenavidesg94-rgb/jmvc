@@ -10,14 +10,16 @@ export function Hero() {
       {/* Capa de grid sutil sobre el fondo global de partículas */}
       <div
         aria-hidden
-        className="bg-grid-pattern absolute inset-0 -z-10 opacity-25 [background-size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)]"
+        className="bg-grid-pattern absolute inset-0 -z-10 opacity-30 [background-size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_75%)]"
       />
-      {/* Glows extra puntuales */}
-      <div aria-hidden className="glow-orb-brand absolute -left-32 top-32 -z-10 h-80 w-80" />
-      <div aria-hidden className="glow-orb-cyan absolute -right-32 top-10 -z-10 h-80 w-80" />
-      <div aria-hidden className="glow-orb-fuchsia absolute left-1/2 top-2/3 -z-10 h-32 w-2/3 -translate-x-1/2" />
+      {/* Glows extra puntuales — más intensos y más grandes */}
+      <div aria-hidden className="glow-orb-brand absolute -left-40 top-20 -z-10 h-[500px] w-[500px]" />
+      <div aria-hidden className="glow-orb-cyan absolute -right-40 top-0 -z-10 h-[480px] w-[480px]" />
+      <div aria-hidden className="glow-orb-fuchsia absolute left-1/3 top-1/2 -z-10 h-56 w-[60%] -translate-x-1/4" />
+      {/* Halo central extra para profundidad */}
+      <div aria-hidden className="absolute left-1/2 top-0 -z-10 h-96 w-[700px] -translate-x-1/2 rounded-full bg-brand-500/[0.08] blur-[80px]" />
 
-      <div className="container pb-20 pt-14 md:pb-28 md:pt-20">
+      <div className="container pb-24 pt-16 md:pb-32 md:pt-24 lg:pt-28">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr,1fr] lg:gap-16">
           <div>
             <RevealOnScroll variant="fade-up">
@@ -33,9 +35,9 @@ export function Hero() {
             </RevealOnScroll>
 
             <RevealOnScroll variant="blur-up" delay={120}>
-              <h1 className="mt-6 text-balance text-4xl font-semibold leading-[1.04] tracking-tight text-white md:text-6xl lg:text-[64px]">
+              <h1 className="mt-6 text-balance text-4xl font-bold leading-[1.02] tracking-tight text-white md:text-6xl lg:text-[68px] xl:text-[76px]">
                 Convierte una idea en una{' '}
-                <span className="gradient-text">campaña lista para probar</span>{' '}
+                <span className="gradient-text text-glow-brand">campaña lista para probar</span>{' '}
                 <span className="text-white/85">en minutos.</span>
               </h1>
             </RevealOnScroll>
@@ -51,13 +53,13 @@ export function Hero() {
             <RevealOnScroll variant="fade-up" delay={320}>
               <ul className="mt-6 flex flex-wrap gap-2 text-xs text-white/70">
                 {[
-                  'Brief inteligente',
-                  'Motor creativo',
-                  'Audiencias sugeridas',
-                  'Export a tu plataforma',
+                  { label: 'Brief inteligente', color: 'border-brand-400/30 bg-brand-500/[0.10] text-brand-100' },
+                  { label: 'Motor creativo', color: 'border-accent-400/30 bg-accent-500/[0.10] text-accent-100' },
+                  { label: 'Audiencias sugeridas', color: 'border-fuchsia-400/30 bg-fuchsia-500/[0.10] text-fuchsia-100' },
+                  { label: 'Export a tu plataforma', color: 'border-violet-400/30 bg-violet-500/[0.10] text-violet-100' },
                 ].map((f) => (
-                  <li key={f} className="chip">
-                    {f}
+                  <li key={f.label} className={`chip ${f.color}`}>
+                    {f.label}
                   </li>
                 ))}
               </ul>

@@ -65,18 +65,19 @@ body {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 40%, #67e8f9 100%);
+  background: linear-gradient(120deg, #f0abfc 0%, #a78bfa 28%, #818cf8 52%, #22d3ee 78%, #67e8f9 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .btn-primary {
-  @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-medium text-white shadow-lg shadow-brand-700/30 transition;
-  background: linear-gradient(135deg, #6366f1, #4f46e5 60%, #06b6d4);
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 font-medium text-white shadow-lg shadow-brand-700/40 transition;
+  background: linear-gradient(135deg, #818cf8 0%, #6366f1 35%, #4f46e5 65%, #06b6d4 100%);
 }
 .btn-primary:hover {
-  filter: brightness(1.08);
+  filter: brightness(1.12) saturate(1.1);
+  box-shadow: 0 0 28px rgba(99, 102, 241, 0.45), 0 4px 16px rgba(0,0,0,0.3);
 }
 .btn-primary:active {
   transform: translateY(1px);
@@ -110,11 +111,11 @@ body {
 .surface {
   position: relative;
   border-radius: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.09);
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 0.03) 0%,
-    rgba(255, 255, 255, 0.01) 100%
+    rgba(255, 255, 255, 0.035) 0%,
+    rgba(255, 255, 255, 0.012) 100%
   );
 }
 .surface::before {
@@ -124,9 +125,9 @@ body {
   border-radius: inherit;
   padding: 1px;
   background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.12),
-    rgba(255, 255, 255, 0) 30%
+    160deg,
+    rgba(255, 255, 255, 0.20),
+    rgba(255, 255, 255, 0) 35%
   );
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
@@ -186,10 +187,38 @@ body {
   font-size: 0.6875rem;
   font-weight: 500;
   border-radius: 9999px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.055);
+  color: rgba(255, 255, 255, 0.90);
   white-space: nowrap;
+  backdrop-filter: blur(4px);
+}
+
+/* Card benefit premium con hover glow. */
+.benefit-card {
+  position: relative;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: linear-gradient(180deg, rgba(255,255,255,0.035) 0%, rgba(255,255,255,0.012) 100%);
+  padding: 1.5rem;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+.benefit-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(160deg, rgba(255,255,255,0.18), rgba(255,255,255,0) 35%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+.benefit-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.15);
 }
 
 /* Línea de conexión vertical entre pasos de un workflow. */
@@ -260,7 +289,7 @@ body {
 .glow-orb-brand {
   background: radial-gradient(
     closest-side,
-    rgba(99, 102, 241, 0.55),
+    rgba(99, 102, 241, 0.72),
     rgba(99, 102, 241, 0) 70%
   );
   filter: blur(40px);
@@ -269,7 +298,7 @@ body {
 .glow-orb-cyan {
   background: radial-gradient(
     closest-side,
-    rgba(34, 211, 238, 0.45),
+    rgba(34, 211, 238, 0.60),
     rgba(34, 211, 238, 0) 70%
   );
   filter: blur(40px);
@@ -278,11 +307,19 @@ body {
 .glow-orb-fuchsia {
   background: radial-gradient(
     closest-side,
-    rgba(217, 70, 239, 0.40),
+    rgba(217, 70, 239, 0.55),
     rgba(217, 70, 239, 0) 70%
   );
   filter: blur(40px);
   mix-blend-mode: plus-lighter;
+}
+
+/* Highlight de texto con glow sutil para elementos premium. */
+.text-glow-brand {
+  text-shadow: 0 0 28px rgba(129, 140, 248, 0.55);
+}
+.text-glow-cyan {
+  text-shadow: 0 0 24px rgba(34, 211, 238, 0.50);
 }
 
 /* =========================================================

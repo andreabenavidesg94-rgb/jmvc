@@ -18,26 +18,28 @@ import { JsonLd } from '@/components/JsonLd';
 export default function HomePage() {
   return (
     <>
-      {/* Fondo interactivo global de partículas conectadas.
-          Es 'use client' y se monta solo en la home (no en /login, /dashboard…). */}
+      {/* Canvas z-0: visible por encima del background del body (#06070C).
+          El contenido va en relative z-10 para aparecer encima del canvas. */}
       <InteractiveDotBackground />
 
-      <Header />
-      <main id="main">
-        <Hero />
-        <StatsCounter />
-        <Problem />
-        <Solution />
-        <HowItWorks />
-        <Platforms />
-        <Differentiator />
-        <Benefits />
-        <Testimonials />
-        <Pricing />
-        <Faq />
-        <CtaFinal />
-      </main>
-      <Footer />
+      <div className="relative z-10">
+        <Header />
+        <main id="main">
+          <Hero />
+          <StatsCounter />
+          <Problem />
+          <Solution />
+          <HowItWorks />
+          <Platforms />
+          <Differentiator />
+          <Benefits />
+          <Testimonials />
+          <Pricing />
+          <Faq />
+          <CtaFinal />
+        </main>
+        <Footer />
+      </div>
       <JsonLd />
     </>
   );
