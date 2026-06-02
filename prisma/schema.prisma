@@ -61,14 +61,24 @@ model User {
   currentPeriodEnd    DateTime?
   cancelAtPeriodEnd   Boolean            @default(false)
 
-  // Relaciones.
-  subscriptions       Subscription[]
+  // ── Meta Ads (solo lectura, OAuth con ads_read) ──────────
+  metaUserId           String?   @unique  // ID del usuario en Graph API
+  metaAccessToken      String?            // Token cifrado con AES-256-GCM (ENCRYPTION_KEY)
+  metaAdAccountId      String?            // Cuenta publicitaria seleccionada: "act_XXXXXXXXXX"
+  metaConnectedAt      DateTime?          // Timestamp de primera conexión exitosa
+  metaTokenExpiresAt   DateTime?          // Expiración del token (calculada desde expires_in)
+  metaTokenScopes      String?            // Scopes concedidos, ej: "ads_read"
+  metaTokenType        String?            // Tipo de token, ej: "bearer"
 
-  createdAt           DateTime @default(now())
-  updatedAt           DateTime @updatedAt
+  // Relaciones.
+  subscriptions        Subscription[]
+
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
 
   @@index([paddleCustomerId])
   @@index([paddleSubscriptionId])
+  @@index([metaUserId])
 }
 
 model Subscription {
