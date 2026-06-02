@@ -151,7 +151,7 @@ export default async function DashboardPage() {
       <main id="main" className="container py-12">
         <h1 className="text-3xl font-semibold tracking-tight text-white">Panel de Meta Ads</h1>
         <p className="mt-1 text-sm text-white/60">
-          Datos de tu cuenta publicitaria en tiempo real.
+          Datos recientes de tu cuenta publicitaria.
         </p>
 
         <div className="mt-8">
